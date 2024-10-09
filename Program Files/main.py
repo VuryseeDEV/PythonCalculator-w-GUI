@@ -5,10 +5,12 @@ calculation = ""
 
 def addToCalc(symbol):
     global calculation
+    #This is optional, just person pref since I don't like using '*' and '/'
     if symbol == "*":
         symbol = "×"
     elif symbol == "/":
         symbol = "÷"
+    #
     calculation += str(symbol)
     txtResult.delete(1.0, "end")
     txtResult.insert(1.0, calculation)
@@ -17,7 +19,9 @@ def addToCalc(symbol):
 def evalCalc():
     global calculation
     try:
+        #I don't like using '*' and '/' lol. This is optional
         calc = calculation.replace("×", "*").replace("÷", "/")
+        #
         calculation = str(eval(calc))
         
         txtResult.delete(1.0, "end")
@@ -34,6 +38,7 @@ def clearField():
     calculation = ""
     txtResult.delete(1.0, "end")
     pass
+
 def create_button(root, text, row, column, command):
     button = tk.Button(root,
                       text=text,
@@ -45,6 +50,7 @@ def create_button(root, text, row, column, command):
                       )
     button.grid(row=row, column=column, sticky="nsew")
     return button
+
 #Creates window
 root=tk.Tk()
 root.geometry("270x260")
@@ -64,7 +70,7 @@ for i in range(7):
     root.grid_rowconfigure(i, weight=1)
     root.grid_columnconfigure(i, weight=1)
 
-#
+#0-9 buttons
 create_button(root, "1", 2, 1, lambda: addToCalc(1))
 create_button(root, "2", 2, 2, lambda: addToCalc(2))
 create_button(root, "3", 2, 3, lambda: addToCalc(3))
@@ -76,14 +82,16 @@ create_button(root, "8", 4, 2, lambda: addToCalc(8))
 create_button(root, "9", 4, 3, lambda: addToCalc(9))
 create_button(root, "0", 5, 2, lambda: addToCalc(0))
 
+#operators
 create_button(root, "+", 2, 4, lambda: addToCalc("+"))
 create_button(root, "-", 3, 4, lambda: addToCalc("-"))
 create_button(root, "×", 4, 4, lambda: addToCalc("*"))
 create_button(root, "÷", 5, 4, lambda: addToCalc("/"))
 create_button(root, "=", 6, 3, evalCalc).grid(columnspan=2)
+
+#extra buttons
 create_button(root, "C", 6, 1, clearField).grid(columnspan=2)
 create_button(root, "(", 5, 1, lambda: addToCalc("("))
 create_button(root, ")", 5, 3, lambda: addToCalc(")"))
 
 root.mainloop()
-#
