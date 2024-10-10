@@ -101,7 +101,7 @@ create_button(root, "9", 4, 3, lambda: addToCalc(9), bg_color="#787673", fg_colo
 create_button(root, "0", 5, 2, lambda: addToCalc(0), bg_color="#787673", fg_color="black")
 
 
-#operators (+, -, ×, ÷, =)
+#operators (+, -, ×, ÷, =, √, ^)
 create_button(root, "+", 2, 4, lambda: addToCalc("+"), bg_color="#474645", fg_color="black")
 create_button(root, "-", 3, 4, lambda: addToCalc("-"), bg_color="#474645", fg_color="black")
 create_button(root, "×", 4, 4, lambda: addToCalc("*"), bg_color="#474645", fg_color="black")
